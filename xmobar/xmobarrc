@@ -1,0 +1,42 @@
+Config { overrideRedirect = False
+       , font     = "xft:iosevka-9"
+       , bgColor  = "#1e1f29"
+       , fgColor  = "#f8f8f2"
+       , position = TopW L 95
+       , commands = [ Run Weather "SBCF"
+                        [ "--template", "<weather> <tempC>°C"
+                        , "-L", "0"
+                        , "-H", "25"
+                        , "--low"   , "lightblue"
+                        , "--normal", "#f8f8f2"
+                        , "--high"  , "red"
+                        ] 36000
+                    , Run MultiCpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "red"
+                        , "--normal", "green"
+                        , "--template", "CPU: <total0>% | <total1>% | <total2>% | <total3>%"
+                        ] 10
+                    , Run Alsa "default" "Master"
+                        [ "--template", "<volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", ""
+                        ]
+                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %d/%m/%Y <fc=#8be9fd>%H:%M</fc>" "date" 10
+                    , Run XMonadLog
+                    , Run Com "/bin/bash" ["-c", "playerctl metadata --format '{{ artist }} - {{ title  }}'"] "playing" 60
+                    , Run BatteryP ["BAT0"]  ["-L", "15", "-H", "80"] 30
+                    , Run Network "wlp0s20f3" [] 30
+                    , Run Com "python" ["/home/mateus/.scripts/xmonad-pulsevolume/show-volume.py"] "vol" 1
+                    , Run Com "python" ["/home/mateus/.scripts/now_playing/now_playing.py"] "now_playing" 5
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = "%XMonadLog% }  {%multicpu% | %memory% * %swap% | %SBCF% | %wlp0s20f3% | %vol% | %battery% | %date% "
+
+       }
+

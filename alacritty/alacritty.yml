@@ -1,0 +1,23 @@
+import:
+  - /home/mateus/.config/alacritty/dracula/dracula.yml
+  - /home/mateus/.config/alacritty/keybinds.yml
+decorations: none
+background_opacity: 0.8
+font:
+  normal: 
+    family: JetBrains Mono
+    style: Regular
+  bold:
+    family: JetBrains Mono
+    style: Bold
+  italic:
+    family: JetBrains Mono
+    style: Italic
+  size: 6.0
+  offset:
+    y: 4
+cursor: 
+  style:
+    shape: Block 
+selection:
+  save-to-clipboard: true
