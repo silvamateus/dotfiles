@@ -31,12 +31,10 @@ Config { overrideRedirect = False
                     , Run Com "/bin/bash" ["-c", "playerctl metadata --format '{{ artist }} - {{ title  }}'"] "playing" 60
                     , Run BatteryP ["BAT0"]  ["-L", "15", "-H", "80"] 30
                     , Run Network "wlp0s20f3" [] 30
-                    , Run Com "python" ["/home/mateus/.scripts/xmonad-pulsevolume/show-volume.py"] "vol" 1
-                    , Run Com "python" ["/home/mateus/.scripts/now_playing/now_playing.py"] "now_playing" 5
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }  {%multicpu% | %memory% * %swap% | %SBCF% | %wlp0s20f3% | %vol% | %battery% | %date% "
+       , template = "%XMonadLog% }  {%multicpu% | %memory% * %swap% | %SBCF% | %wlp0s20f3% | %battery% | %date% "
 
        }
 
