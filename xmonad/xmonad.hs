@@ -71,9 +71,9 @@ myFocusedBorderColor = "#ff0000"
 myAddKeys :: [( String, X () )]
 myAddKeys = 
   [ ( "<XF86AudioPlay>", spawn "playerctl play-pause" )
-  , ( "<XF86AudioRaiseVolume>", spawn "~/.scripts/xmonad-pulsevolume/pulse-volume.sh increase")
-  , ( "<XF86AudioLowerVolume>", spawn "~/.scripts/xmonad-pulsevolume/pulse-volume.sh decrease" )
-  , ( "<XF86AudioMute>", spawn "~/.scripts/xmonad-pulsevolume/pulse-volume.sh toggle" )
+  , ( "<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+  , ( "<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%" )
+  , ( "<XF86AudioMute>", spawn "pactl  set-sink-mute @DEFAULT_SINK@ toggle" )
 
   ]
 
@@ -87,7 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =  M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "rofi -show run -theme kmenu")
+    , ((modm,               xK_p     ), spawn "rofi -show run -theme dmenu")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -276,9 +276,9 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce "picom --config ~/.config/picon/picon.conf &"
-  spawnOnce "feh --bg-fill ~/Pictures/Walpapers/717360.jpg &"
-  spawnOnce "trayer-srg --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x1e1f29 --height 18 &"
+  spawnOnce "picom --config ~/.config/picom/picom.conf &"
+  spawnOnce "feh --bg-fill ~/Pictures/Wallpapers/717360.jpg &"
+  spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x1e1f29 --height 18 &"
   spawnOnce "nm-applet --sm-disable &"
   spawnOnce "blueman-applet &"
 --execScriptHook "~/.xinitrc" 

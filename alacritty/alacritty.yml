@@ -2,7 +2,8 @@ import:
   - /home/mateus/.config/alacritty/dracula/dracula.yml
   - /home/mateus/.config/alacritty/keybinds.yml
 decorations: none
-background_opacity: 0.8
+window:
+  opacity: 0.8
 font:
   normal: 
     family: JetBrains Mono
